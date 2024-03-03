@@ -1,17 +1,24 @@
+using System.Text.Json.Serialization;
+using FinFlow.Api.DTO.TransactionCategory;
+using FinFlow.Api.DTO.TransactionRecord;
+using FinFlow.Api.Services.Interfaces;
+using FinFlow.Api.Utils;
 using FinFlow.DAL;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext(builder.Configuration);
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+
+builder.Services.ConfigureHttpJsonOptions(opt => opt.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
@@ -20,22 +27,24 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapPost("/transaction-records", async ([FromBody] CreateTransactionRecordDto createDto, ITransactionRecordService transactionRecordService) =>
 {
-	"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+	await transactionRecordService.CreateAsync(createDto);
+}).WithOpenApi().AllowAnonymous();
 
-app.MapGet("/weatherforecast", () =>
+app.MapPost("/transaction-records/search", async ([FromBody] SearchTransactionRecordDto searchDto, ITransactionRecordService transactionRecordService) =>
 {
-	var forecast = Enumerable.Range(1, 5).Select(index =>
-		new WeatherForecast(DateOnly.FromDateTime(DateTime.Now.AddDays(index)), Random.Shared.Next(-20, 55),
-			summaries[Random.Shared.Next(summaries.Length)])).ToArray();
-	return forecast;
-}).WithName("GetWeatherForecast").WithOpenApi();
+	return await transactionRecordService.SearchByMonthAndYearAsync(searchDto.Date);
+}).WithOpenApi().AllowAnonymous();
+
+app.MapPost("/transaction-category", async ([FromBody] CreateTransactionCategoryDto createDto, ITransactionCategoryService transactionCategoryService) =>
+{
+	await transactionCategoryService.CreateCategory(createDto);
+}).WithOpenApi().AllowAnonymous();
+
+app.MapPost("/transaction-category/search", async (ITransactionCategoryService transactionCategoryService) =>
+{
+	return await transactionCategoryService.Search();
+}).WithOpenApi().AllowAnonymous();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-	public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
