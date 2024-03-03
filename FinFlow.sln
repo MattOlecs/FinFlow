@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinFlow.Api", "FinFlow.Api\FinFlow.Api.csproj", "{88AF5EEC-9481-4AA8-8755-392C0741C31A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinFlow.DAL", "FinFlow.DAL\FinFlow.DAL.csproj", "{09B27F44-AA56-4A08-BD09-02B1D6F16DD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88AF5EEC-9481-4AA8-8755-392C0741C31A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88AF5EEC-9481-4AA8-8755-392C0741C31A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88AF5EEC-9481-4AA8-8755-392C0741C31A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88AF5EEC-9481-4AA8-8755-392C0741C31A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09B27F44-AA56-4A08-BD09-02B1D6F16DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09B27F44-AA56-4A08-BD09-02B1D6F16DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B27F44-AA56-4A08-BD09-02B1D6F16DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09B27F44-AA56-4A08-BD09-02B1D6F16DD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
