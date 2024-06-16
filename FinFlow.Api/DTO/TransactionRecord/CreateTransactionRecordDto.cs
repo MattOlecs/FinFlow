@@ -7,4 +7,4 @@ public record CreateTransactionRecordDto(
 	TransactionRecordType TransactionRecordType,
 	decimal Amount,
 	int CategoryId,
-	DateOnly Date);
+	DateTime Date);

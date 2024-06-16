@@ -14,9 +14,9 @@ public class TransactionRecordService : ITransactionRecordService
 		_transactionRecordRepository = transactionRecordRepository;
 	}
 
-	public async Task<List<TransactionRecordDto>> SearchByMonthAndYearAsync(DateOnly dateOnly)
+	public async Task<List<TransactionRecordDto>> SearchByMonthAndYearAsync(DateTime datetime)
 	{
-		var records = await _transactionRecordRepository.SearchByMonthAndYear(dateOnly);
+		var records = await _transactionRecordRepository.SearchByMonthAndYear(datetime);
 
 		return records.Select(x => new TransactionRecordDto(
 			x.Id, x.Description, x.Type, x.Amount, x.Date, x.TransactionCategory.Name)).ToList();

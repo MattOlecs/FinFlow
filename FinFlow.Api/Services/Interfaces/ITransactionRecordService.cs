@@ -4,6 +4,6 @@ namespace FinFlow.Api.Services.Interfaces;
 
 public interface ITransactionRecordService
 {
-	Task<List<TransactionRecordDto>> SearchByMonthAndYearAsync(DateOnly dateOnly);
+	Task<List<TransactionRecordDto>> SearchByMonthAndYearAsync(DateTime dateOnly);
 	Task CreateAsync(CreateTransactionRecordDto createTransactionRecordDto);
 }

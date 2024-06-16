@@ -20,7 +20,7 @@ internal class TransactionRecordRepository(FinFlowDbContext finFlowDbContext) : 
 		await finFlowDbContext.SaveChangesAsync();
 	}
 
-	public async Task<List<TransactionRecordEntity>> SearchByMonthAndYear(DateOnly dateOnly)
+	public async Task<List<TransactionRecordEntity>> SearchByMonthAndYear(DateTime dateOnly)
 	{
 		return await finFlowDbContext
 				.TransactionRecords

@@ -6,5 +6,5 @@ public interface ITransactionRecordRepository
 {
 	Task<TransactionRecordEntity?> Get(int id);
 	Task CreateAsync(TransactionRecordEntity transactionRecordEntity);
-	Task<List<TransactionRecordEntity>> SearchByMonthAndYear(DateOnly dateOnly);
+	Task<List<TransactionRecordEntity>> SearchByMonthAndYear(DateTime dateOnly);
 }

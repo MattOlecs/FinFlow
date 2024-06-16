@@ -7,5 +7,5 @@ public record TransactionRecordDto(
 	string Description,
 	TransactionRecordType TransactionRecordType,
 	decimal Amount,
-	DateOnly Date,
+	DateTime Date,
 	string CategoryName);
