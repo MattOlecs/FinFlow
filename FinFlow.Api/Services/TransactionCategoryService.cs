@@ -14,11 +14,13 @@ public class TransactionCategoryService : ITransactionCategoryService
 		_transactionCategoryRepository = transactionCategoryRepository;
 	}
 
-	public async Task CreateCategory(CreateTransactionCategoryDto createTransactionCategoryDto)
+	public async Task<TransactionCategoryEntity> CreateCategory(CreateTransactionCategoryDto createTransactionCategoryDto)
 	{
 		var entity = new TransactionCategoryEntity { Name = createTransactionCategoryDto.Name };
 
 		await _transactionCategoryRepository.CreateAsync(entity);
+
+		return entity;
 	}
 	
 	public async Task<List<TransactionCategoryDto>> Search()

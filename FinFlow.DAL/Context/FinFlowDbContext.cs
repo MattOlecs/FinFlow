@@ -22,6 +22,10 @@ public class FinFlowDbContext : DbContext
 				.WithMany()
 				.HasForeignKey(x => x.CategoryId);
 
+		modelBuilder.Entity<TransactionRecordEntity>()
+			.Property(x => x.Amount)
+			.HasPrecision(18, 2);
+
 		modelBuilder.Entity<TransactionCategoryEntity>().HasKey(x => x.Id);
 		
 		base.OnModelCreating(modelBuilder);
